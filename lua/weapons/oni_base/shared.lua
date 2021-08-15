@@ -37,6 +37,15 @@ SWEP.WorldModel = ""
 
 SWEP.HoldType = "slam"
 
+SWEP.BoneManip = {
+	["ValveBiped.cube3"] = {
+		Pos = Vector(0, 0, 100),
+	},
+	["ValveBiped.Bip01_Spine"] = {
+		Ang = Angle(0, 0, -20),
+	},
+}
+
 SWEP.CustomViewModel = ""
 SWEP.CustomViewModelBone = "ValveBiped.Bip01_R_Hand"
 SWEP.CustomViewModelOffset = Vector()

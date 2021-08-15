@@ -43,6 +43,8 @@ function SWEP:SecondaryAttack()
 end
 
 function SWEP:DrawWorldModel(flags)
+	self.IsViewModelRendering = false
+
 	if self.CustomDrawWorldModel then
 		local owner = self:GetOwner()
 		if not IsValid(owner) then

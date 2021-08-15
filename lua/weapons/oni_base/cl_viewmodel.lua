@@ -30,8 +30,21 @@ function SWEP:CleanupViewModel()
 		return
 	end
 
-	vm:ManipulateBonePosition(vm:LookupBone("ValveBiped.cube3"), Vector(0, 0, 0))
-	vm:ManipulateBoneAngles(vm:LookupBone("ValveBiped.Bip01_Spine"), Angle(0, 0, 0))
+	if istable(self.BoneManip) then
+		for boneName, boneData in pairs(self.BoneManip) do
+			local boneId = vm:LookupBone(boneName)
+			if not boneId then
+				continue
+			end
+
+			if isvector(boneData.Pos) then
+				vm:ManipulateBonePosition(boneId, Vector())
+			end
+			if isvector(boneData.Ang) then
+				vm:ManipulateBoneAngles(boneId, Angle())
+			end
+		end
+	end
 
 	if IsValid(self.CustomViewModelEntity) then
 		self.CustomViewModelEntity:Remove()
@@ -47,6 +60,8 @@ function SWEP:OnRemove()
 end
 
 function SWEP:PostDrawViewModel(vm, weapon, ply)
+	self.IsViewModelRendering = true
+
 	if isstring(self.CustomViewModel) then
 		if not IsValid(self.CustomViewModelEntity) then
 			self.CustomViewModelEntity = ClientsideModel(self.CustomViewModel)
@@ -54,9 +69,21 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 				return
 			end
 
-			-- Removing Bugbait from Viewmodel
-			vm:ManipulateBonePosition(vm:LookupBone("ValveBiped.cube3"), Vector(0, 0, 100))
-			vm:ManipulateBoneAngles(vm:LookupBone("ValveBiped.Bip01_Spine"), Angle(0, 0, -20))
+			if istable(self.BoneManip) then
+				for boneName, boneData in pairs(self.BoneManip) do
+					local boneId = vm:LookupBone(boneName)
+					if not boneId then
+						continue
+					end
+
+					if isvector(boneData.Pos) then
+						vm:ManipulateBonePosition(boneId, boneData.Pos)
+					end
+					if isvector(boneData.Ang) then
+						vm:ManipulateBoneAngles(boneId, boneData.Ang)
+					end
+				end
+			end
 
 			self.CustomViewModelEntity:SetNoDraw(true)
 			self.CustomViewModelEntity:SetModelScale(self.CustomScale)
