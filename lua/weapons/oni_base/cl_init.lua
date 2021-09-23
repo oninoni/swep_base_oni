@@ -64,10 +64,16 @@ function SWEP:DrawWorldModel(flags)
 		end
 
 		local m = owner:GetBoneMatrix(owner:LookupBone(self.CustomWorldModelBone))
+		if not IsValid(m) then
+			return
+		end
+
 		local pos, ang = LocalToWorld(self.CustomWorldModelOffset, self.CustomWorldModelAngle, m:GetTranslation(), m:GetAngles())
 
 		self.CustomWorldModelEntity:SetPos(pos)
 		self.CustomWorldModelEntity:SetAngles(ang)
+
+		self.CustomWorldModelEntity:SetSkin(self:GetSkin())
 
 		self.CustomWorldModelEntity:DrawModel(flags)
 	else

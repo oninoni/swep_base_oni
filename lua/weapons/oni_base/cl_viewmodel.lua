@@ -95,6 +95,8 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 		self.CustomViewModelEntity:SetPos(pos)
 		self.CustomViewModelEntity:SetAngles(ang)
 
+		self.CustomViewModelEntity:SetSkin(self:GetSkin())
+
 		self.CustomViewModelEntity:DrawModel()
 	end
 

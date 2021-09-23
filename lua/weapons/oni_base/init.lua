@@ -17,6 +17,8 @@
 ---------------------------------------
 
 include("shared.lua")
+
+AddCSLuaFile("shared.lua")
 AddCSLuaFile("cl_viewmodel.lua")
 
 function SWEP:Initialize()

@@ -16,14 +16,7 @@
 --       SWEP Oni Base | Shared      --
 ---------------------------------------
 
-AddCSLuaFile()
-
 SWEP.PrintName = "SWEP Oni Base"
-
-SWEP.Author = "Oninoni"
-SWEP.Contact = "Discord: Oninoni#8830"
-SWEP.Purpose = "Base Entity, don't use!"
-SWEP.Instructions = "Use as Base for other Entities."
 
 SWEP.Spawnable = false
 SWEP.AdminOnly = false
@@ -37,14 +30,7 @@ SWEP.WorldModel = ""
 
 SWEP.HoldType = "slam"
 
-SWEP.BoneManip = {
-	["ValveBiped.cube3"] = {
-		Pos = Vector(0, 0, 100),
-	},
-	["ValveBiped.Bip01_Spine"] = {
-		Ang = Angle(0, 0, -20),
-	},
-}
+SWEP.BoneManip = {}
 
 SWEP.CustomViewModel = ""
 SWEP.CustomViewModelBone = "ValveBiped.Bip01_R_Hand"
