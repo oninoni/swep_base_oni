@@ -64,7 +64,7 @@ function SWEP:DrawWorldModel(flags)
 		end
 
 		local m = owner:GetBoneMatrix(owner:LookupBone(self.CustomWorldModelBone))
-		if not IsValid(m) then
+		if not m then
 			return
 		end
 
