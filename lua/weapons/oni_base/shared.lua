@@ -16,6 +16,8 @@
 --       SWEP Oni Base | Shared      --
 ---------------------------------------
 
+SWEP.OniBase = true
+
 SWEP.PrintName = "SWEP Oni Base"
 
 SWEP.Spawnable = false

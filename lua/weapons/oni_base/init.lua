@@ -40,3 +40,12 @@ end
 
 function SWEP:SecondaryAttack()
 end
+
+util.AddNetworkString("OniBase.ResetViewModel")
+hook.Add("PlayerDroppedWeapon", "OniBase.ResetViewModel", function(ply, weapon)
+	if weapon.OniBase then
+		net.Start("OniBase.ResetViewModel")
+			net.WriteEntity(weapon)
+		net.Send(ply)
+	end
+end)

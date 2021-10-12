@@ -59,6 +59,11 @@ function SWEP:OnRemove()
 	self:CleanupViewModel()
 end
 
+net.Receive("OniBase.ResetViewModel", function()
+	local weapon = net.ReadEntity()
+	weapon:CleanupViewModel()
+end)
+
 function SWEP:PostDrawViewModel(vm, weapon, ply)
 	self.IsViewModelRendering = true
 
