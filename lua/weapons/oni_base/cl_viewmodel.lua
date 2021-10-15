@@ -84,7 +84,7 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 					if isvector(boneData.Pos) then
 						vm:ManipulateBonePosition(boneId, boneData.Pos)
 					end
-					if isvector(boneData.Ang) then
+					if isangle(boneData.Ang) then
 						vm:ManipulateBoneAngles(boneId, boneData.Ang)
 					end
 				end
