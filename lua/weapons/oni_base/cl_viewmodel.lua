@@ -91,7 +91,7 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 			end
 
 			self.CustomViewModelEntity:SetNoDraw(true)
-			self.CustomViewModelEntity:SetModelScale(self.CustomScale)
+			self.CustomViewModelEntity:SetModelScale(self.CustomViewModelScale)
 		end
 
 		local m = vm:GetBoneMatrix(vm:LookupBone(self.CustomViewModelBone))

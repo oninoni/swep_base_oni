@@ -60,7 +60,7 @@ function SWEP:DrawWorldModel(flags)
 			end
 
 			self.CustomWorldModelEntity:SetNoDraw(true)
-			self.CustomWorldModelEntity:SetModelScale(self.CustomScale)
+			self.CustomWorldModelEntity:SetModelScale(self.CustomWorldModelScale)
 		end
 
 		local m = owner:GetBoneMatrix(owner:LookupBone(self.CustomWorldModelBone))

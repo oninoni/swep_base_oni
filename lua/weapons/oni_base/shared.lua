@@ -38,13 +38,13 @@ SWEP.CustomViewModel = ""
 SWEP.CustomViewModelBone = "ValveBiped.Bip01_R_Hand"
 SWEP.CustomViewModelOffset = Vector()
 SWEP.CustomViewModelAngle = Angle()
+SWEP.CustomViewModelScale = 1
 
 SWEP.CustomDrawWorldModel = false
 SWEP.CustomWorldModelBone = "ValveBiped.Bip01_R_Hand"
 SWEP.CustomWorldModelOffset = Vector()
 SWEP.CustomWorldModelAngle = Angle()
-
-SWEP.CustomScale = 1
+SWEP.CustomWorldModelScale = 1
 
 SWEP.Primary.Ammo = ""
 SWEP.Primary.ClipSize = 0
