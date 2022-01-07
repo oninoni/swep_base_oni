@@ -63,7 +63,12 @@ function SWEP:DrawWorldModel(flags)
 			self.CustomWorldModelEntity:SetModelScale(self.CustomWorldModelScale)
 		end
 
-		local m = owner:GetBoneMatrix(owner:LookupBone(self.CustomWorldModelBone))
+		local boneId = owner:LookupBone(self.CustomWorldModelBone)
+		if boneId == nil then
+			return
+		end
+
+		local m = owner:GetBoneMatrix(boneId)
 		if not m then
 			return
 		end
