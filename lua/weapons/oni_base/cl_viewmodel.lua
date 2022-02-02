@@ -16,6 +16,15 @@
 --  SWEP Oni Base | Client Viewmodel --
 ---------------------------------------
 
+SWEP.UseHands = true
+
+function SWEP:ResetBoneMod(ent)
+	for boneId = 0, ent:GetBoneCount() - 1 do
+		ent:ManipulateBonePosition(boneId, Vector())
+		ent:ManipulateBoneAngles(boneId, Angle())
+	end
+end
+
 function SWEP:CleanupViewModel()
 	local owner = self:GetOwner()
 	if not IsValid(owner) then
@@ -31,19 +40,7 @@ function SWEP:CleanupViewModel()
 	end
 
 	if istable(self.BoneManip) then
-		for boneName, boneData in pairs(self.BoneManip) do
-			local boneId = vm:LookupBone(boneName)
-			if not boneId then
-				continue
-			end
-
-			if isvector(boneData.Pos) then
-				vm:ManipulateBonePosition(boneId, Vector())
-			end
-			if isvector(boneData.Ang) then
-				vm:ManipulateBoneAngles(boneId, Angle())
-			end
-		end
+		self:ResetBoneMod(vm)
 	end
 
 	if IsValid(self.CustomViewModelEntity) then
@@ -64,6 +61,22 @@ net.Receive("OniBase.ResetViewModel", function()
 	weapon:CleanupViewModel()
 end)
 
+function SWEP:ApplyBoneMod(ent)
+	for boneName, boneData in pairs(self.BoneManip) do
+		local boneId = ent:LookupBone(boneName)
+		if not boneId then
+			continue
+		end
+
+		if isvector(boneData.Pos) then
+			ent:ManipulateBonePosition(boneId, boneData.Pos)
+		end
+		if isangle(boneData.Ang) then
+			ent:ManipulateBoneAngles(boneId, boneData.Ang)
+		end
+	end
+end
+
 function SWEP:PostDrawViewModel(vm, weapon, ply)
 	self.IsViewModelRendering = true
 
@@ -75,19 +88,7 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 			end
 
 			if istable(self.BoneManip) then
-				for boneName, boneData in pairs(self.BoneManip) do
-					local boneId = vm:LookupBone(boneName)
-					if not boneId then
-						continue
-					end
-
-					if isvector(boneData.Pos) then
-						vm:ManipulateBonePosition(boneId, boneData.Pos)
-					end
-					if isangle(boneData.Ang) then
-						vm:ManipulateBoneAngles(boneId, boneData.Ang)
-					end
-				end
+				self:ApplyBoneMod(vm)
 			end
 
 			self.CustomViewModelEntity:SetNoDraw(true)
@@ -95,6 +96,9 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 		end
 
 		local m = vm:GetBoneMatrix(vm:LookupBone(self.CustomViewModelBone))
+		if not m then
+			return
+		end
 		local pos, ang = LocalToWorld(self.CustomViewModelOffset, self.CustomViewModelAngle, m:GetTranslation(), m:GetAngles())
 
 		self.CustomViewModelEntity:SetPos(pos)

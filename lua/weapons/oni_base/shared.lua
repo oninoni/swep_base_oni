@@ -27,7 +27,7 @@ SWEP.Slot = 0
 SWEP.SlotPos = 0
 
 SWEP.ViewModelFOV = 70
-SWEP.ViewModel = "models/weapons/v_bugbait.mdl"
+SWEP.ViewModel = "models/weapons/c_bugbait.mdl"
 SWEP.WorldModel = ""
 
 SWEP.HoldType = "slam"
