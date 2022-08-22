@@ -1,6 +1,6 @@
 ---------------------------------------
 ---------------------------------------
---        Star Trek Utilities        --
+--           Oni SWEP Base           --
 --                                   --
 --            Created by             --
 --       Jan 'Oninoni' Ziegler       --
