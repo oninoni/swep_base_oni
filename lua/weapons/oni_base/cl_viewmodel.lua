@@ -26,11 +26,8 @@ function SWEP:ResetBoneMod(ent)
 end
 
 function SWEP:CleanupViewModel()
-	local owner = self:GetOwner()
+	local owner = LocalPlayer()
 	if not IsValid(owner) then
-		return
-	end
-	if owner ~= LocalPlayer() then
 		return
 	end
 
