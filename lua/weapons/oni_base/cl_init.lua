@@ -79,6 +79,7 @@ function SWEP:DrawWorldModel(flags)
 		self.CustomWorldModelEntity:SetAngles(ang)
 
 		self.CustomWorldModelEntity:SetSkin(self:GetSkin())
+		self.CustomWorldModelEntity:SetBodyGroups(self:GetNWString("Oni_base.bodyGroups"))
 
 		self.CustomWorldModelEntity:DrawModel(flags)
 	else

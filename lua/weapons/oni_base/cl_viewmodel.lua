@@ -102,6 +102,7 @@ function SWEP:PostDrawViewModel(vm, weapon, ply)
 		self.CustomViewModelEntity:SetAngles(ang)
 
 		self.CustomViewModelEntity:SetSkin(self:GetSkin())
+		self.CustomViewModelEntity:SetBodyGroups(self:GetNWString("Oni_base.bodyGroups"))
 
 		self.CustomViewModelEntity:DrawModel()
 	end
